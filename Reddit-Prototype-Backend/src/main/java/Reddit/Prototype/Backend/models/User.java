@@ -23,7 +23,7 @@ public class User {
     private String firstName;
     private String lastName;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private List<Content> userPosts;
 
     @ManyToMany(mappedBy = "communityUsers")

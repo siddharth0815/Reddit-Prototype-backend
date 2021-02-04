@@ -21,10 +21,10 @@ public class Community {
     private String title;
 
     @CreationTimestamp
-    private Date CreatedAt;
+    private Date createdAt;
 
     @Column(name = "Description")
-    private String Description;
+    private String description;
 
 
     @Column(columnDefinition = "integer default 0",name = "upvotes")
@@ -41,19 +41,18 @@ public class Community {
     )
     private List<User> communityUsers;
 
-    @OneToMany(mappedBy = "community", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "community", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private List<Content> communityPosts;
 
     public Community() {
-        this.upvotes=  Long.valueOf(0);
-        this.downvotes= Long.valueOf(0);
-
+        this.upvotes =  Long.valueOf(0);
+        this.downvotes = Long.valueOf(0);
     }
 
     public Community(String title, Date createdAt, String description, Long upvotes, List<User> communityUsers, List<Content> communityPosts, Long downvotes) {
         this.title = title;
-        CreatedAt = createdAt;
-        Description = description;
+        this.createdAt = createdAt;
+        this.description = description;
         this.upvotes = upvotes;
         this.downvotes = downvotes;
         this.communityUsers = communityUsers;
@@ -85,19 +84,17 @@ public class Community {
     }
 
     public Date getCreatedAt() {
-        return CreatedAt;
+        return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
-        CreatedAt = createdAt;
-    }
+    public void setCreatedAt(Date createdAt) { this.createdAt = createdAt; }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
     public void setDescription(String description) {
-        Description = description;
+        this.description = description;
     }
 
     public Long getUpvotes() {

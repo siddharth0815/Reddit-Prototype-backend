@@ -23,10 +23,10 @@ public class Content {
     @Column(name = "Reactions")
     private String reactions;
 
-    @Column(name = "upvotes")
+    @Column(columnDefinition = "integer default 0",name = "upvotes")
     private Long upvotes;
 
-    @Column(name = "downvotes")
+    @Column(columnDefinition = "integer default 0",name = "downvotes")
     private Long downvotes;
 
     @ManyToOne(fetch=FetchType.LAZY, optional = false)
@@ -38,6 +38,8 @@ public class Content {
     private User user;
 
     public Content() {
+        this.upvotes = Long.valueOf(0);
+        this.downvotes = Long.valueOf(0);
     }
 
     public Content(Long parentId, String contentBody, String imageURL, String reactions, Long upvotes, Long downvotes, Community community, User user) {
