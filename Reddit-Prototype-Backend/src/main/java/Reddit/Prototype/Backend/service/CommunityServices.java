@@ -81,7 +81,7 @@ public class CommunityServices {
                 }});
 
 
-            List<Community>  resultList = new ArrayList<Community>('0');
+            List<Community>  resultList = new ArrayList<>('0');
 
             for(int i=0;i<count && i<list.size();i++){
                 resultList.add(list.get(i));
