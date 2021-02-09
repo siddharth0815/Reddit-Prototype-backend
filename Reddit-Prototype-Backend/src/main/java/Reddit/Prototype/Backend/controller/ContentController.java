@@ -2,8 +2,9 @@ package Reddit.Prototype.Backend.controller;
 
 import java.util.*;
 
-import Reddit.Prototype.Backend.models.Community;
+import Reddit.Prototype.Backend.converter.ContentConverter;
 import Reddit.Prototype.Backend.models.Content;
+import Reddit.Prototype.Backend.models.ContentDto;
 import Reddit.Prototype.Backend.repository.ContentRepository;
 import Reddit.Prototype.Backend.service.ContentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +20,14 @@ public class ContentController{
     @Autowired
     private ContentRepository contentRepository;
 
+    @Autowired
+    private ContentConverter contentConverter;
+
     @GetMapping
-    public List<Content> getAllContent(){
-        return this.contentRepository.findAll();
+    public List<ContentDto> findAll(){
+     List<Content>findAll = contentRepository.findAll();
+     return contentConverter.entityToDto(findAll);
+
     }
 
     @PostMapping("/create/{userId}/{communityId}")
