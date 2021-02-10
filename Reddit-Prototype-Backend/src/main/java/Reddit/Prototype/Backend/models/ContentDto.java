@@ -18,6 +18,8 @@ public class ContentDto {
     private  Long parentId;
     private  Long upvotes;
     private  Long downvotes;
+    private  String userName;
+    private  String communityName;
 
 //    public ContentDto(Long id, Long parentId, Long upvotes, Long downvotes) {
 //        this.id = id;
@@ -60,5 +62,21 @@ public class ContentDto {
 
     public void setDownvotes(Long downvotes) {
         this.downvotes = downvotes;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getCommunityName() {
+        return communityName;
+    }
+
+    public void setCommunityName(String communityName) {
+        this.communityName = communityName;
     }
 }

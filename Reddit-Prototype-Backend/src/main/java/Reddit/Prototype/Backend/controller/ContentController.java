@@ -10,6 +10,8 @@ import Reddit.Prototype.Backend.service.ContentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityNotFoundException;
+
 @RestController
 @RequestMapping("/api/content")
 public class ContentController{
@@ -23,9 +25,9 @@ public class ContentController{
     @Autowired
     private ContentConverter contentConverter;
 
-    @GetMapping
-    public List<ContentDto> findAll(){
-     List<Content>findAll = contentRepository.findAll();
+    @GetMapping("/{parentId}")
+    public List<ContentDto> findAll(@PathVariable("parentId") Long parentId){
+     List<Content>findAll = contentRepository.findByParentId(parentId);
      return contentConverter.entityToDto(findAll);
 
     }

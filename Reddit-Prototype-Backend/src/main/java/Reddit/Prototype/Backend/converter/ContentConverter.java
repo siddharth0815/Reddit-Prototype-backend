@@ -17,6 +17,8 @@ public class ContentConverter  {
         dto.setUpvotes(content.getUpvotes());
         dto.setDownvotes(content.getDownvotes());
         dto.setContentBody(content.getContentBody());
+        dto.setUserName(content.getUser().getUserName());
+        dto.setCommunityName(content.getCommunity().getTitle());
         return dto;
     }
 
