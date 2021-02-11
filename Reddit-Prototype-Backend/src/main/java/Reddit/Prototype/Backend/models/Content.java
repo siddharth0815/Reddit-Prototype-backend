@@ -1,9 +1,13 @@
 package Reddit.Prototype.Backend.models;
 
 import javax.persistence.*;
+
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.Parent;
 
-
+@Getter
+@Setter
 @Entity
 @Table(name = "Content")
 public class Content {
@@ -50,78 +54,6 @@ public class Content {
         this.upvotes = upvotes;
         this.downvotes = downvotes;
         this.community = community;
-        this.user = user;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getParentId() {
-        return parentId;
-    }
-
-    public void setParentId(Long parentId) {
-        this.parentId = parentId;
-    }
-
-    public String getContentBody() {
-        return contentBody;
-    }
-
-    public void setContentBody(String contentBody) {
-        this.contentBody = contentBody;
-    }
-
-    public String getImageURL() {
-        return imageURL;
-    }
-
-    public void setImageURL(String imageURL) {
-        this.imageURL = imageURL;
-    }
-
-    public String getReactions() {
-        return reactions;
-    }
-
-    public void setReactions(String reactions) {
-        this.reactions = reactions;
-    }
-
-    public Long getUpvotes() {
-        return upvotes;
-    }
-
-    public void setUpvotes(Long upvotes) {
-        this.upvotes = upvotes;
-    }
-
-    public Long getDownvotes() {
-        return downvotes;
-    }
-
-    public void setDownvotes(Long downvotes) {
-        this.downvotes = downvotes;
-    }
-
-    public Community getCommunity() {
-        return community;
-    }
-
-    public void setCommunity(Community community) {
-        this.community = community;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
         this.user = user;
     }
 }

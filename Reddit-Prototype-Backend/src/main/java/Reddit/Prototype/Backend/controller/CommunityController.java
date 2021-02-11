@@ -1,6 +1,8 @@
 package Reddit.Prototype.Backend.controller;
 
+import Reddit.Prototype.Backend.converter.CommunityConverter;
 import Reddit.Prototype.Backend.models.Community;
+import Reddit.Prototype.Backend.models.CommunityDto;
 import Reddit.Prototype.Backend.repository.CommunityRepository;
 import Reddit.Prototype.Backend.service.CommunityServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,22 +20,25 @@ public class CommunityController {
         @Autowired
         private CommunityServices communityServices;
 
+        @Autowired
+        private CommunityConverter communityConverter;
+
         // get all communities
         @GetMapping
-        public List<Community> getAllCommunities(){
-            return this.communityRepository.findAll();
+        public List<CommunityDto> getAllCommunities(){
+            return communityConverter.entityToDto(this.communityRepository.findAll());
         }
 
         // get by id
         @GetMapping("/{id}")
-        public Community getCommunityById(@PathVariable(value = "id") Long communityId){
-            return this.communityRepository.findById(communityId)
-                    .orElseThrow( () -> new RuntimeException("User not found with id : "+communityId));
+        public CommunityDto getCommunityById(@PathVariable(value = "id") Long communityId){
+            return communityConverter.entityToDto(this.communityRepository.findById(communityId)
+                    .orElseThrow( () -> new RuntimeException("User not found with id : "+communityId)));
         }
 
         @PostMapping("/create")
-        public Community createCommunity(@RequestBody Community community){
-            return this.communityRepository.save(community);
+        public CommunityDto createCommunity(@RequestBody Community community){
+            return communityConverter.entityToDto(this.communityRepository.save(community));
         }
 
         @GetMapping("/test")
@@ -57,9 +62,9 @@ public class CommunityController {
             return this.communityServices.downvoteCommunity(communityId);
         }
 
-        @GetMapping("/topFive")
-        public List<Community> TopCommunity(){
-        return this.communityServices.TopCommunities(5);
+        @GetMapping("/top")
+        public List<CommunityDto> TopCommunity(@RequestParam int count){
+            return communityConverter.entityToDto(this.communityServices.TopCommunities(count));
        }
 
     }

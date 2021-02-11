@@ -73,7 +73,6 @@ public class ContentService {
         content.setDownvotes(content.getDownvotes()+1);
         contentRepository.save(content);
         return "Downvoting Successful";
-
     }
 
     public List<Content> TopContent(int count){

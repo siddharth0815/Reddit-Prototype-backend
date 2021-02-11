@@ -1,82 +1,20 @@
 package Reddit.Prototype.Backend.models;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Data
 public class ContentDto {
-    private  Long id;
-    private  String contentBody;
-
-    public String getContentBody() {
-        return contentBody;
-    }
-
-    public void setContentBody(String contentBody) {
-        this.contentBody = contentBody;
-    }
-
-    private  Long parentId;
-    private  Long upvotes;
-    private  Long downvotes;
-    private  String userName;
-    private  String communityName;
-
-//    public ContentDto(Long id, Long parentId, Long upvotes, Long downvotes) {
-//        this.id = id;
-//        this.parentId = parentId;
-//        this.upvotes = upvotes;
-//        this.downvotes = downvotes;
-//    }
-
-    public ContentDto() {
-
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getParentId() {
-        return parentId;
-    }
-
-    public void setParentId(Long parentId) {
-        this.parentId = parentId;
-    }
-
-    public Long getUpvotes() {
-        return upvotes;
-    }
-
-    public void setUpvotes(Long upvotes) {
-        this.upvotes = upvotes;
-    }
-
-    public Long getDownvotes() {
-        return downvotes;
-    }
-
-    public void setDownvotes(Long downvotes) {
-        this.downvotes = downvotes;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getCommunityName() {
-        return communityName;
-    }
-
-    public void setCommunityName(String communityName) {
-        this.communityName = communityName;
-    }
+    private Long id;
+    private String contentBody;
+    private Long parentId;
+    private Long upvotes;
+    private Long downvotes;
+    private UserDto userDto;
+    private CommunityDto communityDto;
 }

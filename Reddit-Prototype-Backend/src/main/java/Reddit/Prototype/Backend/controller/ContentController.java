@@ -27,9 +27,8 @@ public class ContentController{
 
     @GetMapping("/{parentId}")
     public List<ContentDto> findAll(@PathVariable("parentId") Long parentId){
-     List<Content>findAll = contentRepository.findByParentId(parentId);
-     return contentConverter.entityToDto(findAll);
-
+        List<Content>findAll = contentRepository.findByParentId(parentId);
+        return contentConverter.entityToDto(findAll);
     }
 
     @PostMapping("/create/{userId}/{communityId}")
@@ -57,9 +56,9 @@ public class ContentController{
         return this.contentService.downvoteContent(contentId);
     }
 
-    @GetMapping("/topFive")
-    public List<Content> TopContent(){
-        return this.contentService.TopContent(5);
+    @GetMapping("/top")
+    public List<ContentDto> TopContent(@RequestParam int count){
+        return contentConverter.entityToDto(this.contentService.TopContent(count));
     }
 
 }

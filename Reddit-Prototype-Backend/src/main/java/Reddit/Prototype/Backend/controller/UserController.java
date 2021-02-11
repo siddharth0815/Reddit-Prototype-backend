@@ -1,7 +1,9 @@
 package Reddit.Prototype.Backend.controller;
 
 
+import Reddit.Prototype.Backend.converter.UserConverter;
 import Reddit.Prototype.Backend.models.User;
+import Reddit.Prototype.Backend.models.UserDto;
 import Reddit.Prototype.Backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,22 +20,25 @@ public class UserController {
         @Autowired
         private UserService userService;
 
+        @Autowired
+        private UserConverter userConverter;
+
         // get all
         @GetMapping
-        public List<User> getAllUsers(){
-            return this.userRepository.findAll();
+        public List<UserDto> getAllUsers(){
+            return userConverter.entityToDto(this.userRepository.findAll());
         }
 
         // get by id
         @GetMapping("/{id}")
-        public User getUserById(@PathVariable(value = "id") Long userId){
-            return this.userRepository.findById(userId)
-                    .orElseThrow( () -> new RuntimeException("User not found with id : "+userId));
+        public UserDto getUserById(@PathVariable(value = "id") Long userId){
+            return userConverter.entityToDto(this.userRepository.findById(userId)
+                    .orElseThrow( () -> new RuntimeException("User not found with id : "+userId)));
         }
 
         @PostMapping("/create")
-        public User createUser(@RequestBody User user){
-            return this.userRepository.save(user);
+        public UserDto createUser(@RequestBody User user){
+            return userConverter.entityToDto(this.userRepository.save(user));
         }
 
         @GetMapping("/test")

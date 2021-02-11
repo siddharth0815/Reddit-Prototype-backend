@@ -1,20 +1,17 @@
 package Reddit.Prototype.Backend.models;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Data
 public class UserDto {
-
+    private Long id;
     private String userName;
-
-    public UserDto() {
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
+    private String firstName;
+    private String lastName;
 }
