@@ -15,6 +15,6 @@ public class ContentDto {
     private Long parentId;
     private Long upvotes;
     private Long downvotes;
-    private UserDto userDto;
-    private CommunityDto communityDto;
+    private String userName;
+    private String communityName;
 }

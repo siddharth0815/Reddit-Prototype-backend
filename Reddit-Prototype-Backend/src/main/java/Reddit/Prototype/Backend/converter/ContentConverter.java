@@ -3,6 +3,7 @@ package Reddit.Prototype.Backend.converter;
 import Reddit.Prototype.Backend.models.Content;
 import Reddit.Prototype.Backend.models.ContentDto;
 import Reddit.Prototype.Backend.models.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -10,9 +11,6 @@ import java.util.stream.Collectors;
 
 @Component
 public class ContentConverter  {
-    private UserConverter userConverter;
-    private CommunityConverter communityConverter;
-
     public ContentDto entityToDto(Content content){
         ContentDto dto = new ContentDto();
         dto.setId(content.getId());
@@ -20,8 +18,8 @@ public class ContentConverter  {
         dto.setUpvotes(content.getUpvotes());
         dto.setDownvotes(content.getDownvotes());
         dto.setContentBody(content.getContentBody());
-        dto.setUserDto(userConverter.entityToDto(content.getUser()));
-        dto.setCommunityDto(communityConverter.entityToDto(content.getCommunity()));
+        dto.setUserName(content.getUser().getUserName());
+        dto.setCommunityName(content.getCommunity().getTitle());
         return dto;
     }
     public List<ContentDto> entityToDto(List<Content> content){
@@ -34,8 +32,6 @@ public class ContentConverter  {
         content.setUpvotes(dto.getUpvotes());
         content.setDownvotes(dto.getDownvotes());
         content.setContentBody(dto.getContentBody());
-        content.setUser(userConverter.dtoToEntity(dto.getUserDto()));
-        content.setCommunity(communityConverter.dtoToEntity(dto.getCommunityDto()));
         return content;
     }
     public List<Content> dtoToEntity( List<ContentDto> dtos ) {
