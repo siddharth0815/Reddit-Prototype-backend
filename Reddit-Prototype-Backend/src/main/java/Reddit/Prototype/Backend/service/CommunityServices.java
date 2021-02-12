@@ -69,28 +69,33 @@ public class CommunityServices {
         }
 
         public List<Community> TopCommunities(int count){
-
-
             List<Community> list = this.communityRepository.findAll();
-
             Collections.sort(list, new Comparator<Community>() {
                 public int compare(Community c1, Community c2) {
-
-
                     return c1.getUpvotes()>c2.getUpvotes() ? -1 : 1;
-                }});
-
-
-            List<Community>  resultList = new ArrayList<>('0');
-
+                }
+            });
+            List<Community>  resultList = new ArrayList<>(0);
             for(int i=0;i<count && i<list.size();i++){
                 resultList.add(list.get(i));
             }
-
             return resultList;
-
         }
 
+        public List<Community> TrendingCommunities(int count) {
+            List<Community> list = this.communityRepository.findAll();
+            Collections.sort(list, new Comparator<Community>() {
+                public int compare(Community c1, Community c2) {
+                    Long a = c1.getCommunityPosts().stream().map(x->x.getUpvotes()).reduce(Long.valueOf(0), Long::sum);
+                    Long b = c2.getCommunityPosts().stream().map(x->x.getUpvotes()).reduce(Long.valueOf(0), Long::sum);
+                    return a>b ? -1 : 1;
+                }
+            });
+            List<Community> resultList = new ArrayList<>(0);
+            for(int i=0;i<count && i<list.size();i++)
+                resultList.add(list.get(i));
+            return resultList;
+        }
 
     }
 

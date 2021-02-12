@@ -41,11 +41,6 @@ public class UserController {
             return userConverter.entityToDto(this.userRepository.save(user));
         }
 
-        @GetMapping("/test")
-        public String test(){
-            return "User api endpoint works!";
-        }
-
         @PostMapping("/follow/{userId1}/{userId2}")
         public String followCommunity(@PathVariable("userId1") Long userId1,@PathVariable("userId2") Long userId2){
             return this.userService.FollowUser(userId1,userId2);

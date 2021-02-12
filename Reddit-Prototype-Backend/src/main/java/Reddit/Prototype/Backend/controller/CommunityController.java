@@ -41,11 +41,6 @@ public class CommunityController {
             return communityConverter.entityToDto(this.communityRepository.save(community));
         }
 
-        @GetMapping("/test")
-        public String test(){
-            return "Community api endpoint works!";
-        }
-
         @PostMapping("/follow/{userId}/{communityId}")
         public String followCommunity(@PathVariable("userId") Long userId,@PathVariable("communityId") Long communityId){
             return this.communityServices.followCommunity(userId,communityId);
@@ -65,7 +60,11 @@ public class CommunityController {
         @GetMapping("/top")
         public List<CommunityDto> TopCommunity(@RequestParam int count){
             return communityConverter.entityToDto(this.communityServices.TopCommunities(count));
-       }
+        }
 
+        @GetMapping("/trending")
+        public List<CommunityDto> TrendingCommunity(@RequestParam int count) {
+            return communityConverter.entityToDto(this.communityServices.TrendingCommunities(count));
+        }
     }
 
