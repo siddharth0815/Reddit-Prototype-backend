@@ -16,6 +16,8 @@ public class CommunityConverter {
         dto.setDescription(community.getDescription());
         dto.setUpvotes(community.getUpvotes());
         dto.setDownvotes(community.getDownvotes());
+        dto.setMembers(community.getCommunityUsers().size());
+        dto.setPosts(community.getCommunityPosts().size());
         return dto;
     }
     public List<CommunityDto> entityToDto(List<Community> commumities ) {
