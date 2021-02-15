@@ -18,6 +18,7 @@ public class ContentConverter  {
         dto.setUpvotes(content.getUpvotes());
         dto.setDownvotes(content.getDownvotes());
         dto.setContentBody(content.getContentBody());
+        dto.setImageURL(content.getImageURL());
         dto.setUserName(content.getUser().getUserName());
         dto.setCommunityName(content.getCommunity().getTitle());
         return dto;
@@ -32,6 +33,7 @@ public class ContentConverter  {
         content.setUpvotes(dto.getUpvotes());
         content.setDownvotes(dto.getDownvotes());
         content.setContentBody(dto.getContentBody());
+        content.setImageURL(dto.getImageURL());
         return content;
     }
     public List<Content> dtoToEntity( List<ContentDto> dtos ) {
