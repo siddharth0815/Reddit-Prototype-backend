@@ -12,10 +12,11 @@ import lombok.Setter;
 public class ContentDto {
     private Long id;
     private String contentBody;
+    private String imageURL;
     private Long parentId;
     private Long upvotes;
     private Long downvotes;
     private String userName;
     private String communityName;
-    private String imageURL;
+
 }

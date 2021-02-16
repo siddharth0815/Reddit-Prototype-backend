@@ -43,8 +43,10 @@ public class ContentService {
     public String editContent(Content content, Long id){
         Content original = this.contentRepository.findById(id)
                 .orElseThrow( () -> new RuntimeException("Content not found with id : "+id));
-        original.setContentBody(content.getContentBody());
-        original.setImageURL(content.getImageURL());
+        if( content.getContentBody() != null )
+            original.setContentBody(content.getContentBody());
+        if( content.getImageURL() != null )
+            original.setImageURL(content.getImageURL());
         this.contentRepository.save(original);
         return "post successfully edited";
     }
