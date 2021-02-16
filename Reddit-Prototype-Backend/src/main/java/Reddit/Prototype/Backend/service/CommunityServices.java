@@ -88,6 +88,7 @@ public class CommunityServices {
                 public int compare(Community c1, Community c2) {
                     Long a = c1.getCommunityPosts().stream().map(x->x.getUpvotes()).reduce(Long.valueOf(0), Long::sum);
                     Long b = c2.getCommunityPosts().stream().map(x->x.getUpvotes()).reduce(Long.valueOf(0), Long::sum);
+                    if( a == b ) return 0;
                     return a>b ? -1 : 1;
                 }
             });
