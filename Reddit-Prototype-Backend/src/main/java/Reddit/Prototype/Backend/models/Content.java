@@ -2,12 +2,15 @@ package Reddit.Prototype.Backend.models;
 
 import javax.persistence.*;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Parent;
 
 @Getter
 @Setter
+@AllArgsConstructor
 @Entity
 @Table(name = "Content")
 public class Content {
@@ -44,17 +47,6 @@ public class Content {
     public Content() {
         this.upvotes = Long.valueOf(0);
         this.downvotes = Long.valueOf(0);
-    }
-
-    public Content(Long parentId, String contentBody, String imageURL, String reactions, Long upvotes, Long downvotes, Community community, User user) {
-        this.parentId = parentId;
-        this.contentBody = contentBody;
-        this.imageURL = imageURL;
-        this.reactions = reactions;
-        this.upvotes = upvotes;
-        this.downvotes = downvotes;
-        this.community = community;
-        this.user = user;
     }
 }
 

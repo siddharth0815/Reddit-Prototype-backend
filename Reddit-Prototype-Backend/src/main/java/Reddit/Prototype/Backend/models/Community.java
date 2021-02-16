@@ -1,9 +1,7 @@
 package Reddit.Prototype.Backend.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.Value;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Parent;
 
@@ -13,6 +11,7 @@ import java.util.List;
 
 @Getter
 @Setter
+@AllArgsConstructor
 @Entity
 @Table(name = "Community")
 @JsonIgnoreProperties({"hibernateLazyIntializer", "handler","communityUsers"})
@@ -51,15 +50,5 @@ public class Community {
     public Community() {
         this.upvotes =  Long.valueOf(0);
         this.downvotes = Long.valueOf(0);
-    }
-
-    public Community(String title, Date createdAt, String description, Long upvotes, List<User> communityUsers, List<Content> communityPosts, Long downvotes) {
-        this.title = title;
-        this.createdAt = createdAt;
-        this.description = description;
-        this.upvotes = upvotes;
-        this.downvotes = downvotes;
-        this.communityUsers = communityUsers;
-        this.communityPosts = communityPosts;
     }
 }

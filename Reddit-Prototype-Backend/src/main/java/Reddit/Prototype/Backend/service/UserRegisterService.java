@@ -20,7 +20,6 @@ public class UserRegisterService {
         } catch (Exception e) {
             return emptyUser;
         }
-
         return user;
     }
 }

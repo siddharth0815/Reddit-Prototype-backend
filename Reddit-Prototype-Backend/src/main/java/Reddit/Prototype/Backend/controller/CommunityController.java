@@ -6,6 +6,8 @@ import Reddit.Prototype.Backend.models.CommunityDto;
 import Reddit.Prototype.Backend.repository.CommunityRepository;
 import Reddit.Prototype.Backend.service.CommunityServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -42,8 +44,11 @@ public class CommunityController {
         }
 
         @PostMapping("/follow/{userId}/{communityId}")
-        public String followCommunity(@PathVariable("userId") Long userId,@PathVariable("communityId") Long communityId){
-            return this.communityServices.followCommunity(userId,communityId);
+        public ResponseEntity<CommunityDto> followCommunity(@PathVariable("userId") Long userId, @PathVariable("communityId") Long communityId){
+            String result = this.communityServices.followCommunity(userId,communityId);
+            if( result == "Success" )
+                return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
         @PostMapping("/upvote/{communityId}")
