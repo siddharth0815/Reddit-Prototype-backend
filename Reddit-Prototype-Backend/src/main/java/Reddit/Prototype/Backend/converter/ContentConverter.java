@@ -20,6 +20,7 @@ public class ContentConverter  {
         dto.setContentBody(content.getContentBody());
         dto.setUserName(content.getUser().getUserName());
         dto.setCommunityName(content.getCommunity().getTitle());
+        dto.setImageURL(content.getImageURL());
         return dto;
     }
     public List<ContentDto> entityToDto(List<Content> content){

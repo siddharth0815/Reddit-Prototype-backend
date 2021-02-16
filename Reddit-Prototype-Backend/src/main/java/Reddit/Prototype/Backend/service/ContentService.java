@@ -77,13 +77,17 @@ public class ContentService {
 
     public List<Content> TopContent(int count){
         List<Content> list = this.contentRepository.findAll();
+
         Collections.sort(list, new Comparator<Content>() {
             public int compare(Content c1, Content c2) {
+                if(c1.getUpvotes()==c2.getUpvotes()){return 0;}
                 return c1.getUpvotes()>c2.getUpvotes() ? -1 : 1;
             }});
         List<Content>  resultList = new ArrayList<>('0');
         for(int i=0;i<count && i<list.size();i++){
+            System.out.println(list.get(i));
             resultList.add(list.get(i));
+
         }
         return resultList;
     }

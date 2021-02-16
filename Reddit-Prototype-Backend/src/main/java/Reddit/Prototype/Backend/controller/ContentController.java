@@ -58,6 +58,7 @@ public class ContentController{
 
     @GetMapping("/top")
     public List<ContentDto> TopContent(@RequestParam int count){
+        System.out.println("Hello");
         return contentConverter.entityToDto(this.contentService.TopContent(count));
     }
 
