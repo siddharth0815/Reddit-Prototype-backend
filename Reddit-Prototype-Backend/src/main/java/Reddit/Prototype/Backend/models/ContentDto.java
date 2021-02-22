@@ -14,8 +14,7 @@ public class ContentDto {
     private String contentBody;
     private String imageURL;
     private Long parentId;
-    private Long upvotes;
-    private Long downvotes;
+    private Long votes;
     private String userName;
     private String communityName;
 }

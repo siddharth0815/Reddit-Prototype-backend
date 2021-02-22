@@ -32,12 +32,12 @@ public class ContentController{
     }
 
     @PostMapping("/create/{userId}/{communityId}")
-    public String createContent(@RequestBody Content content, @PathVariable("userId") Long userId, @PathVariable("communityId") Long communityId){
+    public String createContent(@RequestBody Content content, @PathVariable Long userId, @PathVariable Long communityId){
         return this.contentService.createContent(content,userId,communityId);
     }
 
     @DeleteMapping("/delete/{id}")
-    public String deleteContent(@PathVariable("id") Long id) {
+    public String deleteContent(@PathVariable Long id) {
         return this.contentService.deleteContent(id);
     }
 
@@ -46,19 +46,13 @@ public class ContentController{
         return this.contentService.editContent(content, id);
     }
 
-    @PostMapping("/upvote/{contentId}")
-    public String upvoteContent(@PathVariable("contentId") Long contentId){
-        return this.contentService.upvoteContent(contentId);
-    }
-
-    @PostMapping("/downvote/{contentId}")
-    public String downvoteContent(@PathVariable("contentId") Long contentId){
-        return this.contentService.downvoteContent(contentId);
+    @PostMapping("/vote/{userId}/{contentId}")
+    public int voteContent(@PathVariable Long userId, @PathVariable Long contentId, @RequestParam boolean add){
+        return this.contentService.voteContent(userId, contentId, add);
     }
 
     @GetMapping("/top")
     public List<ContentDto> TopContent(@RequestParam int count){
-        System.out.println("Hello");
         return contentConverter.entityToDto(this.contentService.TopContent(count));
     }
 

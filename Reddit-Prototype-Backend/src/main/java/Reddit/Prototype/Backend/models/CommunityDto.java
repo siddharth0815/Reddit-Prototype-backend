@@ -13,8 +13,7 @@ public class CommunityDto {
     private Long id;
     private String title;
     private String description;
-    private Long upvotes;
-    private Long downvotes;
+    private Long votes;
     private int members;
     private int posts;
 }

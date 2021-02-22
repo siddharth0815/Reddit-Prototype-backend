@@ -51,15 +51,9 @@ public class CommunityController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
-        @PostMapping("/upvote/{communityId}")
-        public String upvoteCommunity(@PathVariable("communityId") Long communityId){
-            return this.communityServices.upvoteCommunity(communityId);
-        }
-
-
-        @PostMapping("/downvote/{communityId}")
-        public String downvoteCommunity(@PathVariable("communityId") Long communityId){
-            return this.communityServices.downvoteCommunity(communityId);
+        @PostMapping("/vote/{userId}/{communityId}")
+        public String voteCommunity(@PathVariable Long userId, @PathVariable Long communityId, @RequestParam boolean add){
+            return this.communityServices.voteCommunity(userId, communityId, add);
         }
 
         @GetMapping("/top")

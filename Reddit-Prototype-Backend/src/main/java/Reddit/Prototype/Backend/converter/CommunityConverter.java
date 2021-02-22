@@ -14,8 +14,7 @@ public class CommunityConverter {
         dto.setId(community.getId());
         dto.setTitle(community.getTitle());
         dto.setDescription(community.getDescription());
-        dto.setUpvotes(community.getUpvotes());
-        dto.setDownvotes(community.getDownvotes());
+        dto.setVotes(community.getVotes());
         if( community.getCommunityUsers() != null )
             dto.setMembers(community.getCommunityUsers().size());
         if( community.getCommunityPosts() != null )
@@ -30,8 +29,7 @@ public class CommunityConverter {
         community.setId(dto.getId());
         community.setTitle(dto.getTitle());
         community.setDescription(dto.getDescription());
-        community.setUpvotes(dto.getUpvotes());
-        community.setDownvotes(dto.getDownvotes());
+        community.setVotes(dto.getVotes());
         return community;
     }
     public List<Community> dtoToEntity(List<CommunityDto> dtos ) {

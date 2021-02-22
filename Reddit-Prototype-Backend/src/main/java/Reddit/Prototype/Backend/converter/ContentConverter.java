@@ -15,8 +15,7 @@ public class ContentConverter  {
         ContentDto dto = new ContentDto();
         dto.setId(content.getId());
         dto.setParentId(content.getParentId());
-        dto.setUpvotes(content.getUpvotes());
-        dto.setDownvotes(content.getDownvotes());
+        dto.setVotes(content.getVotes());
         dto.setContentBody(content.getContentBody());
         dto.setImageURL(content.getImageURL());
         dto.setUserName(content.getUser().getUserName());
@@ -31,8 +30,7 @@ public class ContentConverter  {
         Content content = new Content();
         content.setId(dto.getId());
         content.setParentId(dto.getParentId());
-        content.setUpvotes(dto.getUpvotes());
-        content.setDownvotes(dto.getDownvotes());
+        content.setVotes(dto.getVotes());
         content.setContentBody(dto.getContentBody());
         content.setImageURL(dto.getImageURL());
         return content;

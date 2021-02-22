@@ -29,12 +29,8 @@ public class Community {
     @Column(name = "Description")
     private String description;
 
-
-    @Column(columnDefinition = "integer default 0",name = "upvotes")
-    private Long upvotes;
-
-    @Column(columnDefinition = "integer default 0",name = "downvotes")
-    private Long downvotes;
+    @Column(columnDefinition = "integer default 0", name = "votes")
+    private Long votes;
 
     @ManyToMany
     @JoinTable(
@@ -48,7 +44,6 @@ public class Community {
     private List<Content> communityPosts;
 
     public Community() {
-        this.upvotes =  Long.valueOf(0);
-        this.downvotes = Long.valueOf(0);
+        this.votes =  Long.valueOf(0);
     }
 }

@@ -36,27 +36,24 @@ public class CommunityServices {
         return "Success";
     }
 
-    public String upvoteCommunity(Long communityId){
+    public String voteCommunity(Long userId, Long communityId, boolean add){
         Community community = this.communityRepository.findById(communityId)
-                .orElseThrow( () -> new RuntimeException("User not found with id : "+communityId));
-        community.setUpvotes(community.getUpvotes()+1);
+                .orElseThrow( () -> new RuntimeException("Community not found with id : "+communityId));
+        User user = this.userRepository.findById(userId)
+                .orElseThrow( () -> new RuntimeException("User not found with id : "+userId));
+        if( add )
+            community.setVotes(community.getVotes() + 1);
+        else
+            community.setVotes(Math.max(0, community.getVotes() - 1));
         communityRepository.save(community);
-        return "Upvoting Successful";
-    }
-
-    public String downvoteCommunity(Long communityId){
-        Community community = this.communityRepository.findById(communityId)
-                .orElseThrow( () -> new RuntimeException("User not found with id : "+communityId));
-        community.setDownvotes(community.getDownvotes()+1);
-        communityRepository.save(community);
-        return "Downvoting Successful";
+        return "Voting Successful";
     }
 
     public List<Community> TopCommunities(int count){
         List<Community> list = this.communityRepository.findAll();
         Collections.sort(list, new Comparator<Community>() {
             public int compare(Community c1, Community c2) {
-                return c1.getUpvotes()>c2.getUpvotes() ? -1 : 1;
+                return c1.getVotes()>c2.getVotes() ? -1 : 1;
             }
         });
         List<Community>  resultList = new ArrayList<>(0);
@@ -70,8 +67,8 @@ public class CommunityServices {
         List<Community> list = this.communityRepository.findAll();
         Collections.sort(list, new Comparator<Community>() {
             public int compare(Community c1, Community c2) {
-                Long a = c1.getCommunityPosts().stream().map(x->x.getUpvotes()).reduce(Long.valueOf(0), Long::sum);
-                Long b = c2.getCommunityPosts().stream().map(x->x.getUpvotes()).reduce(Long.valueOf(0), Long::sum);
+                Long a = c1.getCommunityPosts().stream().map(x->x.getVotes()).reduce(Long.valueOf(0), Long::sum);
+                Long b = c2.getCommunityPosts().stream().map(x->x.getVotes()).reduce(Long.valueOf(0), Long::sum);
                 if( a == b ) return 0;
                 return a>b ? -1 : 1;
             }

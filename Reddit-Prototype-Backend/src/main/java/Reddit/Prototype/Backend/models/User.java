@@ -44,6 +44,10 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "following_id")
     )
     private List<User> following;
+
     @ManyToMany(mappedBy = "following")
     private List<User> followers;
+
+    @OneToMany(mappedBy="user")
+    List<UserContent> userContents;
 }

@@ -8,11 +8,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Parent;
 
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @Entity
-@Table(name = "Content")
+@Table(name = "content")
 public class Content {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -30,11 +32,8 @@ public class Content {
     @Column(name = "Reactions")
     private String reactions;
 
-    @Column(columnDefinition = "integer default 0",name = "upvotes")
-    private Long upvotes;
-
-    @Column(columnDefinition = "integer default 0",name = "downvotes")
-    private Long downvotes;
+    @Column(columnDefinition = "integer default 0", name = "votes")
+    private Long votes;
 
     @ManyToOne(fetch=FetchType.LAZY, optional = false)
     @JoinColumn(name = "community_id", nullable = false)
@@ -44,9 +43,11 @@ public class Content {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    @OneToMany(mappedBy="content")
+    List<UserContent> userContents;
+
     public Content() {
-        this.upvotes = Long.valueOf(0);
-        this.downvotes = Long.valueOf(0);
+        this.votes = Long.valueOf(0);
     }
 }
 
