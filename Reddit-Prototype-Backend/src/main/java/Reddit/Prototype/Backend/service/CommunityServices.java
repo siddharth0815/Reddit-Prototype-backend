@@ -53,6 +53,8 @@ public class CommunityServices {
         List<Community> list = this.communityRepository.findAll();
         Collections.sort(list, new Comparator<Community>() {
             public int compare(Community c1, Community c2) {
+                if(c1.getVotes()==c2.getVotes())
+                    return 0;
                 return c1.getVotes()>c2.getVotes() ? -1 : 1;
             }
         });
