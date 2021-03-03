@@ -31,7 +31,7 @@ public class ContentController{
         return contentConverter.entityToDto(findAll);
     }
 
-    @PostMapping("/create/{userId}/{communityId}")
+    @PostMapping("/create/user/{userId}/community/{communityId}")
     public String createContent(@RequestBody Content content, @PathVariable Long userId, @PathVariable Long communityId){
         return this.contentService.createContent(content,userId,communityId);
     }
@@ -46,7 +46,7 @@ public class ContentController{
         return this.contentService.editContent(content, id);
     }
 
-    @PostMapping("/vote/{userId}/{contentId}")
+    @PostMapping("/vote/user/{userId}/content/{contentId}")
     public int voteContent(@PathVariable Long userId, @PathVariable Long contentId, @RequestParam boolean add){
         return this.contentService.voteContent(userId, contentId, add);
     }

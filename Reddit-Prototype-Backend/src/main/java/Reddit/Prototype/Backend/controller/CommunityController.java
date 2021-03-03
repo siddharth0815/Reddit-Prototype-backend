@@ -33,7 +33,7 @@ public class CommunityController {
 
         // get by id
         @GetMapping("/{id}")
-        public CommunityDto getCommunityById(@PathVariable(value = "id") Long communityId){
+        public CommunityDto getCommunityById(@PathVariable("id") Long communityId){
             return communityConverter.entityToDto(this.communityRepository.findById(communityId)
                     .orElseThrow( () -> new RuntimeException("User not found with id : "+communityId)));
         }
@@ -43,7 +43,7 @@ public class CommunityController {
             return communityConverter.entityToDto(this.communityRepository.save(community));
         }
 
-        @PostMapping("/follow/{userId}/{communityId}")
+        @PostMapping("/follow/user/{userId}/community/{communityId}")
         public ResponseEntity<CommunityDto> followCommunity(@PathVariable("userId") Long userId, @PathVariable("communityId") Long communityId){
             String result = this.communityServices.followCommunity(userId,communityId);
             if( result == "Success" )
@@ -51,7 +51,7 @@ public class CommunityController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
-        @PostMapping("/vote/{userId}/{communityId}")
+        @PostMapping("/vote/user/{userId}/community/{communityId}")
         public String voteCommunity(@PathVariable Long userId, @PathVariable Long communityId, @RequestParam boolean add){
             return this.communityServices.voteCommunity(userId, communityId, add);
         }
