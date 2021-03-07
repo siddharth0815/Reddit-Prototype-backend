@@ -11,14 +11,13 @@ import java.util.Optional;
 public class UserRegisterService {
     @Autowired
     private UserRepository userRepository;
-    private User emptyUser;
 
 
     public User addUser(User user) {
         try {
             userRepository.save(user);
         } catch (Exception e) {
-            return emptyUser;
+            return null;
         }
         return user;
     }

@@ -1,6 +1,4 @@
 
 o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(àÍ‚
-?
-java:S1128")Remove this unused import 'lombok.Value'.(ß­ÅŸ
-S
-java:S1128"=Remove this unused import 'org.hibernate.annotations.Parent'.(ìÀíœ
+Z
+java:S1128"=Remove this unused import 'org.hibernate.annotations.Parent'.(ìÀíœ8Õáñáú.

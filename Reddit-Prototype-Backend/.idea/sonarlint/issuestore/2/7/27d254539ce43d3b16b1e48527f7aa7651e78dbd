@@ -1,12 +1,15 @@
 
-k
-java:S1128"PRemove this unused import 'org.springframework.web.bind.annotation.RequestBody'.(â­½Àýÿÿÿÿ
-n	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(«§¼
+U	java:S106Z"9Replace this use of System.out or System.err by a logger.(ŸÏÍè8µ­¬Ðú.
 z
 java:S1192-"]Define a constant instead of duplicating this literal "Content not found with id : " 4 times.(Ï¶Ãÿ8‚ÐÅ™ø.
-E
-java:S1604Q"(Make this anonymous inner class a lambda(§ÜÕ“8‚ÐÅ™ø.
+k
+java:S1128"PRemove this unused import 'org.springframework.web.bind.annotation.RequestBody'.(â­½Àýÿÿÿÿ
 Z
 java:S1128"8Remove this unused import 'java.util.stream.Collectors'.(Óóº´úÿÿÿÿ8‚ÐÅ™ø.
+j	java:S100P"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(öâÚ–8‚ÐÅ™ø.
+E
+java:S1604S"(Make this anonymous inner class a lambda(§ÜÕ“8‚ÐÅ™ø.
 ]	java:S125%"<This block of commented-out lines of code should be removed.(¶·Œ’øÿÿÿÿ8‚ÐÅ™ø.
-j	java:S100O"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(öâÚ–8‚ÐÅ™ø.
+V
+java:S4973U"9Use the "equals" method if value comparison was intended.(ã‡úà8ôûÕÐú.
+n	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(«§¼

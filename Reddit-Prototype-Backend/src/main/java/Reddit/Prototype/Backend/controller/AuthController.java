@@ -28,8 +28,11 @@ public class AuthController {
 
     @PostMapping
     @RequestMapping("/register")
-    public User registerUser(@RequestBody User user) {
-        return userRegisterService.addUser(user);
+    public ResponseEntity<UserDto> registerUser(@RequestBody User user) {
+        UserDto newUserDto =userConverter.entityToDto( userRegisterService.addUser(user));
+        if(newUserDto!=null)
+        {return new ResponseEntity<>(newUserDto, HttpStatus.OK);}
+        else{return new ResponseEntity<>(HttpStatus.BAD_REQUEST);}
     }
 
     @RequestMapping("/login")

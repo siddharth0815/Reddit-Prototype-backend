@@ -101,7 +101,8 @@ public class ContentService {
     }
 
     public List<Content> TopContent(int count){
-        List<Content> list = this.contentRepository.findAll();
+
+        List<Content> list = this.contentRepository.findByParentId((long)-1);
 
         Collections.sort(list, new Comparator<Content>() {
             public int compare(Content c1, Content c2) {

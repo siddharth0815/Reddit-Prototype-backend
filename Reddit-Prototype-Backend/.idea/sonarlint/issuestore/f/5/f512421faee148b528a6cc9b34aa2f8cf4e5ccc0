@@ -1,9 +1,10 @@
 
-t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(üåÓÛşÿÿÿÿ
-c
-java:S1128"FRemove this unused import 'Reddit.Prototype.Backend.models.Community'.(‚ƒ¨Ã8ÕÑÅ™ø.
-]
-java:S4684"@Replace this persistent entity with a simple POJO or DTO object.(éê·ß8ÕÑÅ™ø.
 b
-java:S4684&"@Replace this persistent entity with a simple POJO or DTO object.(„ãÜøÿÿÿÿ8ÕÑÅ™ø.
-j	java:S1005"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(œ¯“±8ÕÑÅ™ø.
+java:S4684-"@Replace this persistent entity with a simple POJO or DTO object.(„ãÜøÿÿÿÿ8Ì³—­ú.
+Z	java:S106="9Replace this use of System.out or System.err by a logger.(Ù¿éûÿÿÿÿ8ˆÊ¥Ğú.
+o	java:S100<"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¤İè“ûÿÿÿÿ8Ì³—­ú.
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(üåÓÛşÿÿÿÿ
+]
+java:S4684#"@Replace this persistent entity with a simple POJO or DTO object.(éê·ß8Ì³—­ú.
+b
+java:S1128"FRemove this unused import 'javax.persistence.EntityNotFoundException'.(©ÿ€8Ëß§Ãø.

@@ -9,4 +9,7 @@ import java.util.Optional;
 public interface UserContentRepository extends JpaRepository<UserContent, Long> {
     Optional<UserContent> findByUserIdAndContentId(Long userId, Long contentId);
     List<UserContent> findByContentId(Long contentId);
+    List<UserContent> findByUserId(Long userId);
+
+
 }
