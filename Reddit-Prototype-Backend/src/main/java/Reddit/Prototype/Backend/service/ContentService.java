@@ -101,9 +101,7 @@ public class ContentService {
     }
 
     public List<Content> TopContent(int count){
-
         List<Content> list = this.contentRepository.findByParentId((long)-1);
-
         Collections.sort(list, new Comparator<Content>() {
             public int compare(Content c1, Content c2) {
                 if(c1.getVotes()==c2.getVotes()){return 0;}
@@ -113,7 +111,6 @@ public class ContentService {
         for(int i=0;i<count && i<list.size();i++){
             System.out.println(list.get(i));
             resultList.add(list.get(i));
-
         }
         return resultList;
     }
