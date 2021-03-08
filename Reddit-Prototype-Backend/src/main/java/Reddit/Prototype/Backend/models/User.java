@@ -30,6 +30,7 @@ public class User {
     private String roles;
     private String firstName;
     private String lastName;
+    private String iconURL;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private List<Content> userPosts;

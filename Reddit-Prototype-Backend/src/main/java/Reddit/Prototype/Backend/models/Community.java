@@ -32,6 +32,8 @@ public class Community {
     @Column(columnDefinition = "integer default 0", name = "votes")
     private Long votes;
 
+    private String iconURL;
+
     @ManyToMany
     @JoinTable(
             name = "user_community",

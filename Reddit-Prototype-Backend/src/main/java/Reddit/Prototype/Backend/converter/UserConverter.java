@@ -15,6 +15,7 @@ public class UserConverter {
         dto.setUserName(user.getUserName());
         dto.setFirstName(user.getFirstName());
         dto.setLastName(user.getLastName());
+        dto.setIconURL(user.getIconURL());
         return dto;
     }
     public List<UserDto> entityToDto(List<User> users ) {
@@ -26,6 +27,7 @@ public class UserConverter {
         user.setUserName(dto.getUserName());
         user.setFirstName(dto.getFirstName());
         user.setLastName(dto.getLastName());
+        user.setIconURL(dto.getIconURL());
         return user;
     }
     public List<User> dtoToEntity( List<UserDto> dtos ) {

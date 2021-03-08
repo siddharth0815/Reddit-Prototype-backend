@@ -19,6 +19,7 @@ public class CommunityConverter {
             dto.setMembers(community.getCommunityUsers().size());
         if( community.getCommunityPosts() != null )
             dto.setPosts(community.getCommunityPosts().size());
+        dto.setIconURL(community.getIconURL());
         return dto;
     }
     public List<CommunityDto> entityToDto(List<Community> commumities ) {
@@ -30,6 +31,7 @@ public class CommunityConverter {
         community.setTitle(dto.getTitle());
         community.setDescription(dto.getDescription());
         community.setVotes(dto.getVotes());
+        community.setIconURL(dto.getIconURL());
         return community;
     }
     public List<Community> dtoToEntity(List<CommunityDto> dtos ) {
