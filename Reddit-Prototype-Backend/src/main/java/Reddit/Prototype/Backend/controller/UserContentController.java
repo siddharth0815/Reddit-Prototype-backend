@@ -24,7 +24,6 @@ public class UserContentController {
 
     @GetMapping("/{id}")
     public List<UserContentDto> getAllUserContent(@PathVariable(value = "id") Long userId){
-
         return userContentConverter.entityToDto(userContentRepository.findByUserId(userId));
     }
 

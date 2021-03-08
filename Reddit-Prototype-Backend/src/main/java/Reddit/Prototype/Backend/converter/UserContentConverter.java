@@ -11,11 +11,12 @@ import Reddit.Prototype.Backend.models.UserContentDto;
 
 @Component
 public class UserContentConverter {
-    public UserContentDto entityToDto(UserContent userContent ) {
+    public UserContentDto entityToDto(UserContent userContent) {
         UserContentDto dto = new UserContentDto();
         dto.setUserId(userContent.getUser().getId());
         dto.setContentId(userContent.getContent().getId());
         dto.setVotes((long)userContent.getVotes());
+        dto.setReaction((long)userContent.getReaction());
         return dto;
     }
     public List<UserContentDto> entityToDto(List<UserContent> users ) {
