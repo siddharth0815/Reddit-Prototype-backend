@@ -17,4 +17,5 @@ public class ContentDto {
     private Long votes;
     private String userName;
     private String communityName;
+    private Long communityId;
 }

@@ -20,6 +20,7 @@ public class ContentConverter  {
         dto.setImageURL(content.getImageURL());
         dto.setUserName(content.getUser().getUserName());
         dto.setCommunityName(content.getCommunity().getTitle());
+        dto.setCommunityId(content.getCommunity().getId());
         dto.setImageURL(content.getImageURL());
         return dto;
     }

@@ -15,10 +15,21 @@ public class UserRegisterService {
 
     public User addUser(User user) {
         try {
+           String password = user.getPassword();
+           String hashedPassword = generateHash(password);
+           user.setPassword(hashedPassword);
             userRepository.save(user);
         } catch (Exception e) {
             return null;
         }
         return user;
+    }
+
+    public String generateHash(String password)
+    {
+        //adding salt and computing hashcode
+        final String SALT = "#0*5#&";
+        String str = SALT + password;
+        return Integer.toString(str.hashCode());
     }
 }

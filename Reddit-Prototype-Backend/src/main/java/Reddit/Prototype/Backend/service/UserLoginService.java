@@ -20,11 +20,23 @@ public class UserLoginService {
         User user = userRepository.findByUserName(userName);
 //        System.out.println(user.getUserName());
 //        System.out.println(user.getPassword());
-        if(user!=null && user.getPassword().equals(password))
+        String hashedPassword = generateHash(password);
+        String originalPassword = user.getPassword();
+        System.out.println(hashedPassword);
+        System.out.println(originalPassword);
+        if(user!=null && hashedPassword.equals(originalPassword))
         {
             //System.out.println("done");
             return user;
         }
         else{return null;}
+    }
+
+    public String generateHash(String password)
+    {
+        //adding salt and computing hashcode
+        final String SALT = "#0*5#&";
+        String str = SALT + password;
+        return Integer.toString(str.hashCode());
     }
 }
