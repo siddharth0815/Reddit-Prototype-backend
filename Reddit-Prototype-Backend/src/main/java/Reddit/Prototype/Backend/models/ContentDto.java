@@ -18,4 +18,6 @@ public class ContentDto {
     private String userName;
     private String communityName;
     private Long communityId;
+    private String userIcon;
+    private String communityIcon;
 }

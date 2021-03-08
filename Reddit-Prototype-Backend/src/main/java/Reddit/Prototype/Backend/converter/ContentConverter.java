@@ -22,6 +22,8 @@ public class ContentConverter  {
         dto.setCommunityName(content.getCommunity().getTitle());
         dto.setCommunityId(content.getCommunity().getId());
         dto.setImageURL(content.getImageURL());
+        dto.setUserIcon(content.getUser().getIconURL());
+        dto.setCommunityIcon(content.getCommunity().getIconURL());
         return dto;
     }
     public List<ContentDto> entityToDto(List<Content> content){
