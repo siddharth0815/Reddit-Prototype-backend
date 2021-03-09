@@ -115,4 +115,26 @@ public class ContentService {
         return resultList;
     }
 
+    public String reactContent(Long userId, Long contentId, Long reactId){
+        User user = this.userRepository.findById(userId)
+                .orElseThrow( () -> new RuntimeException("User not found with id : "+userId));
+        Content content = this.contentRepository.findById(contentId)
+                .orElseThrow( () -> new RuntimeException("Content not found with id : "+contentId));
+        Optional<UserContent> userContentOptional = this.userContentRepository.findByUserIdAndContentId(userId, contentId);
+        UserContent userContent;
+        if( userContentOptional.isPresent() ) {
+            userContent = userContentOptional.get();
+        }
+        else {
+            userContent = new UserContent();
+            userContent.setUser(user);
+            userContent.setContent(content);
+        }
+        userContent.setReaction(reactId.intValue());
+        this.userContentRepository.save(userContent);
+        System.out.println(userContent.getReaction());
+        System.out.println(userContent.getUser().getId());
+        return "Reacted Successfully";
+    }
+
 }

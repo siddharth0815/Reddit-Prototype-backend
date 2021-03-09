@@ -31,4 +31,8 @@ public class UserContent {
         votes = 0;
         reaction = 0;
     }
+
+    public void setReaction(int reaction) {
+        this.reaction = reaction;
+    }
 }
