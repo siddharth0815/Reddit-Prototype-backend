@@ -3,6 +3,8 @@ package Reddit.Prototype.Backend.controller;
 import Reddit.Prototype.Backend.converter.CommunityConverter;
 import Reddit.Prototype.Backend.models.Community;
 import Reddit.Prototype.Backend.models.CommunityDto;
+import Reddit.Prototype.Backend.models.Content;
+import Reddit.Prototype.Backend.models.ContentDto;
 import Reddit.Prototype.Backend.repository.CommunityRepository;
 import Reddit.Prototype.Backend.service.CommunityServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,14 +58,18 @@ public class CommunityController {
             return this.communityServices.voteCommunity(userId, communityId, add);
         }
 
-        @GetMapping("/top")
-        public List<CommunityDto> TopCommunity(@RequestParam int count){
-            return communityConverter.entityToDto(this.communityServices.TopCommunities(count));
+        @GetMapping("/sorted")
+        public ResponseEntity<List<CommunityDto>> getCommunities(@RequestParam(defaultValue = "votes,desc") String[] sort, @RequestParam int count){
+            List<Community> communities = communityServices.getCommunities(sort, count);
+            if( communities.isEmpty() ){
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(communityConverter.entityToDto(communities), HttpStatus.OK);
         }
 
         @GetMapping("/trending")
         public List<CommunityDto> TrendingCommunity(@RequestParam int count) {
-            return communityConverter.entityToDto(this.communityServices.TrendingCommunities(count));
+            return communityConverter.entityToDto(communityServices.TrendingCommunities(count));
         }
     }
 

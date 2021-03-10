@@ -10,6 +10,9 @@ import Reddit.Prototype.Backend.repository.UserContentRepository;
 import Reddit.Prototype.Backend.repository.UserRepository;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -20,15 +23,14 @@ public class ContentService {
 
     @Autowired
     private ContentRepository contentRepository;
-
     @Autowired
     private UserRepository userRepository;
-
     @Autowired
     private CommunityRepository communityRepository;
-
     @Autowired
     private UserContentRepository userContentRepository;
+    @Autowired
+    private SortService sortService;
 
     public String createContent(Content content,Long userId,Long communityId){
         User user = this.userRepository.findById(userId)
@@ -113,6 +115,10 @@ public class ContentService {
             resultList.add(list.get(i));
         }
         return resultList;
+    }
+
+    public List<Content> getContent(String[] sort, int count){
+        return sortService.get(sort, count, contentRepository);
     }
 
     public String reactContent(Long userId, Long contentId, Long reactId){

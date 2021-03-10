@@ -8,6 +8,11 @@ import Reddit.Prototype.Backend.models.ContentDto;
 import Reddit.Prototype.Backend.repository.ContentRepository;
 import Reddit.Prototype.Backend.service.ContentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Order;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
@@ -25,15 +30,18 @@ public class ContentController{
     @Autowired
     private ContentConverter contentConverter;
 
-    @GetMapping
-    public List<ContentDto> findAll(@RequestParam String order){
-        System.out.println(order);
-        return contentConverter.entityToDto(contentRepository.findCustom(order));
+    @GetMapping("/sorted")
+    public ResponseEntity<List<ContentDto>> getContent(@RequestParam(defaultValue = "votes,desc") String[] sort, @RequestParam int count){
+        List<Content> contents = contentService.getContent(sort, count);
+        if( contents.isEmpty() ){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(contentConverter.entityToDto(contents), HttpStatus.OK);
     }
 
     @GetMapping("/{parentId}")
     public List<ContentDto> findAll(@PathVariable("parentId") Long parentId){
-        List<Content>findAll = contentRepository.findByParentId(parentId);
+        List<Content> findAll = contentRepository.findByParentId(parentId);
         return contentConverter.entityToDto(findAll);
     }
 
@@ -56,10 +64,4 @@ public class ContentController{
     public int voteContent(@PathVariable Long userId, @PathVariable Long contentId, @RequestParam boolean add){
         return this.contentService.voteContent(userId, contentId, add);
     }
-
-    @GetMapping("/top")
-    public List<ContentDto> TopContent(@RequestParam int count){
-        return contentConverter.entityToDto(this.contentService.TopContent(count));
-    }
-
 }

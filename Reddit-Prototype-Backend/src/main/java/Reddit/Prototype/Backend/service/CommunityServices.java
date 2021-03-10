@@ -14,11 +14,13 @@ import java.util.List;
 
 @Service
 public class CommunityServices {
-    @Autowired
-    private CommunityRepository communityRepository;
 
     @Autowired
+    private CommunityRepository communityRepository;
+    @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private SortService sortService;
 
     public String followCommunity(Long userId,Long communityId){
         Community community = this.communityRepository.findById(communityId)
@@ -47,6 +49,10 @@ public class CommunityServices {
             community.setVotes(Math.max(0, community.getVotes() - 1));
         communityRepository.save(community);
         return "Voting Successful";
+    }
+
+    public List<Community> getCommunities(String[] sort, int count){
+        return sortService.get(sort, count, communityRepository);
     }
 
     public List<Community> TopCommunities(int count){
