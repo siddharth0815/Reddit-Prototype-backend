@@ -25,6 +25,12 @@ public class ContentController{
     @Autowired
     private ContentConverter contentConverter;
 
+    @GetMapping
+    public List<ContentDto> findAll(@RequestParam String order){
+        System.out.println(order);
+        return contentConverter.entityToDto(contentRepository.findCustom(order));
+    }
+
     @GetMapping("/{parentId}")
     public List<ContentDto> findAll(@PathVariable("parentId") Long parentId){
         List<Content>findAll = contentRepository.findByParentId(parentId);
