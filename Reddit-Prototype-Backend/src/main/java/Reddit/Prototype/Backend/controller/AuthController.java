@@ -38,7 +38,6 @@ public class AuthController {
     @RequestMapping("/login")
     @GetMapping
     public ResponseEntity<UserDto> loginUser(@RequestBody Map<String, String> credentials) {
-        System.out.println("hello login");
         String userName = credentials.get("userName");
         String password = credentials.get("password");
         UserDto dto = userConverter.entityToDto(userLoginService.login(userName, password));
