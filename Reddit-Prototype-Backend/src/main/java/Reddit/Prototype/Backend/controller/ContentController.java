@@ -33,16 +33,17 @@ public class ContentController{
     @GetMapping("/sorted")
     public ResponseEntity<List<ContentDto>> getContent(@RequestParam(defaultValue = "votes,desc") String[] sort, @RequestParam int count){
         List<Content> contents = contentService.getContent(sort, count);
-        if( contents.isEmpty() ){
+        if( contents.isEmpty() )
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
         return new ResponseEntity<>(contentConverter.entityToDto(contents), HttpStatus.OK);
     }
 
     @GetMapping("/{parentId}")
-    public List<ContentDto> findAll(@PathVariable("parentId") Long parentId){
-        List<Content> findAll = contentRepository.findByParentId(parentId);
-        return contentConverter.entityToDto(findAll);
+    public ResponseEntity<List<ContentDto>> findAll(@PathVariable("parentId") Long parentId){
+        List<Content> contents = contentRepository.findByParentId(parentId);
+        if( contents.isEmpty() )
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(contentConverter.entityToDto(contents), HttpStatus.OK);
     }
 
     @PostMapping("/create/user/{userId}/community/{communityId}")

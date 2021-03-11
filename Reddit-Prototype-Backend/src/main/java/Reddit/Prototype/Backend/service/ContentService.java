@@ -35,14 +35,10 @@ public class ContentService {
     public String createContent(Content content,Long userId,Long communityId){
         User user = this.userRepository.findById(userId)
                .orElseThrow( () -> new RuntimeException("User not found with id : "+userId));
-//        user.getUserPosts().add(content);
         content.setUser(user);
         Community community = this.communityRepository.findById(communityId)
                 .orElseThrow( () -> new RuntimeException("Community not found with id : "+communityId));
-//        community.getCommunityPosts().add(content);
         content.setCommunity(community);
-//        this.communityRepository.save(community);
-//        this.userRepository.save(user);
         this.contentRepository.save(content);
         return "post successfully created";
     }

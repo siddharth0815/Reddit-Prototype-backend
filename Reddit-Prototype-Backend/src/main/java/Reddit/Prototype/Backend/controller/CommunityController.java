@@ -61,15 +61,17 @@ public class CommunityController {
         @GetMapping("/sorted")
         public ResponseEntity<List<CommunityDto>> getCommunities(@RequestParam(defaultValue = "votes,desc") String[] sort, @RequestParam int count){
             List<Community> communities = communityServices.getCommunities(sort, count);
-            if( communities.isEmpty() ){
+            if( communities.isEmpty() )
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
             return new ResponseEntity<>(communityConverter.entityToDto(communities), HttpStatus.OK);
         }
 
         @GetMapping("/trending")
-        public List<CommunityDto> TrendingCommunity(@RequestParam int count) {
-            return communityConverter.entityToDto(communityServices.TrendingCommunities(count));
+        public ResponseEntity<List<CommunityDto>> TrendingCommunity(@RequestParam int count) {
+            List<Community> communities = communityServices.TrendingCommunities(count);
+            if( communities.isEmpty() )
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(communityConverter.entityToDto(communities), HttpStatus.OK);
         }
     }
 
